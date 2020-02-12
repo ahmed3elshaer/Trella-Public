@@ -1,0 +1,69 @@
+apply plugin: Deps.androidApplication
+
+apply plugin: Deps.kotlinAndroid
+
+apply plugin: Deps.kotlinKapt
+
+apply plugin: Deps.kotlinAndroidExtensions
+
+apply plugin: Deps.googlePlayServices
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.trella"
+        minSdkVersion AndroidSdk.min
+        targetSdkVersion AndroidSdk.target
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation JetPack.kotlinStdLib
+    implementation JetPack.appCompat
+    implementation JetPack.ktxCore
+    implementation JetPack.constraintLayout
+
+    implementation UI.material
+
+    implementation Lifecycle.lifecycleKtx
+    implementation Lifecycle.livedata
+    implementation Lifecycle.viewmodel
+    implementation Lifecycle.viewmodelKtx
+    kapt Lifecycle.lifecycleCompiler
+
+    implementation RxJava.java
+    implementation RxJava.android
+    implementation RxJava.relay
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.rxjava2Adapter
+    implementation Retrofit.okhttp
+    implementation Retrofit.logging
+
+    implementation Moshi.moshi
+    implementation Moshi.kotlin
+    implementation Moshi.retrofitConverter
+
+    implementation Dagger.runtime
+    implementation Dagger.android
+    implementation Dagger.android_support
+    kapt Dagger.compiler
+    kapt Dagger.support_compiler
+
+    testImplementation UnitTests.jUnit
+    testImplementation UnitTests.mockito
+    testImplementation UnitTests.harmcrest
+    testImplementation UnitTests.mockitoInline
+    testImplementation UnitTests.arch
+}
