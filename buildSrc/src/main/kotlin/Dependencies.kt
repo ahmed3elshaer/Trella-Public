@@ -25,6 +25,8 @@ object AndroidSdk {
 }
 
 private object Versions {
+    const val turf: String ="4.9.0"
+    const val location: String="17.0.0"
     const val stepper: String = "1.0.7"
     const val firebaseCore: String = "16.0.5"
     const val RxFirebaseAuth: String = "16.1.0.0"
@@ -179,6 +181,11 @@ object Firebase {
     val RxAuthKotlin = "com.androidhuman.rxfirebase2:firebase-auth-kotlin:${Versions.RxFirebaseAuth}"
     val core = "com.google.firebase:firebase-core:${Versions.firebaseCore}"
     val RxCore = "com.androidhuman.rxfirebase2:firebase-core:${Versions.firebaseRxCore}"
+}
+
+object Location {
+    val play = "com.google.android.gms:play-services-location:${Versions.location}"
+    val turf = "com.mapbox.mapboxsdk:mapbox-sdk-turf:${Versions.turf}"
 }
 
 
