@@ -1,7 +1,8 @@
-package com.trella
+package com.trella.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.trella.R
 
 class MainActivity : AppCompatActivity() {
 
