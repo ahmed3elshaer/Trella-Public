@@ -6,7 +6,6 @@ apply plugin: Deps.kotlinKapt
 
 apply plugin: Deps.kotlinAndroidExtensions
 
-apply plugin: Deps.googlePlayServices
 
 android {
     compileSdkVersion 29
@@ -60,6 +59,9 @@ dependencies {
     implementation Dagger.android_support
     kapt Dagger.compiler
     kapt Dagger.support_compiler
+
+    implementation Location.play
+    implementation Location.turf
 
     testImplementation UnitTests.jUnit
     testImplementation UnitTests.mockito
