@@ -32,26 +32,6 @@ abstract class BaseViewModel<T : BaseViewState<T>> : ViewModel() {
         compositeDisposable.add(disposable())
     }
 
-    fun <X> applySchedulers(): ObservableTransformer<X, X> {
-        return ObservableTransformer { up ->
-            up.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-        }
-    }
-
-    fun <X> applySchedulersSingle(): SingleTransformer<X, X> {
-        return SingleTransformer { up ->
-            up.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-        }
-    }
-
-    fun applySchedulersCompletable(): CompletableTransformer {
-        return CompletableTransformer { up ->
-            up.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-        }
-    }
 
     fun post(state: T) {
         _viewState.value = state
