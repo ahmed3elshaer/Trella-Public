@@ -1,5 +1,6 @@
 package com.trella.utils
 
+import com.trella.data.models.ShipmentEntity
 import com.trella.domain.model.Shipment
 
 object DataGenerator {
@@ -7,6 +8,10 @@ object DataGenerator {
     fun getShipments() = listOf(getShipment(), getShipment(), getShipment())
 
     fun getShipment() = Shipment()
+
+    fun geEntitytShipments() = listOf(getShipment(), getShipment(), getShipment())
+
+    fun getShipmentEntity() = ShipmentEntity()
 
     const val lat = 30.0456862
 

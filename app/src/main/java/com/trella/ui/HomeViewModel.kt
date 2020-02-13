@@ -20,8 +20,7 @@ class HomeViewModel @Inject constructor(
         getShipmentsUseCase.getAllShipments(latitude, longitude)
             .doOnSubscribe { showLoading() }
             .map { HomePayload(it, latitude != null) }
-            .doOnError(this::postError)
-            .subscribe(this::postPayload)
+            .subscribe(this::postPayload,this::postError)
             .addDisposable()
     }
 
