@@ -10,6 +10,7 @@ import com.trella.common.base.BaseActivity
 import com.trella.common.extensions.hide
 import com.trella.common.extensions.isNetworkAvailable
 import com.trella.common.extensions.show
+import com.trella.common.utils.BottomOffsetDecoration
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +28,7 @@ class HomeActivity : BaseActivity<HomePayload, HomeViewState, HomeViewModel>() {
     override fun setupViews() {
         shipmentsAdapter = ShipmentsAdapter()
         recycler_shipments.itemAnimator = DefaultItemAnimator()
+        recycler_shipments.addItemDecoration(BottomOffsetDecoration(300))
         recycler_shipments.adapter = shipmentsAdapter
     }
 
