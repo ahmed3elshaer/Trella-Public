@@ -14,8 +14,9 @@ import com.trella.data.local.ShipmentsDao
 import com.trella.data.local.ShipmentsDatabase
 import com.trella.common.schedulers.SchedulerProvider
 import com.trella.data.HomeApi
+import com.trella.data.ShipmentEntityToShipmentMapper
 import com.trella.data.ShipmentsMemorySource
-import com.trella.ui.home.GetShipmentsUseCase
+import com.trella.domain.GetShipmentsUseCase
 import com.trella.ui.home.HomeRepository
 import dagger.Module
 import dagger.Provides
@@ -46,10 +47,15 @@ class HomeModule {
         homeApi: HomeApi,
         shipmentsDao: ShipmentsDao,
         shipmentsMemorySource: ShipmentsMemorySource
-    ): HomeRepository = HomeRepository(homeApi, shipmentsDao,shipmentsMemorySource)
+    ): HomeRepository = HomeRepository(homeApi, shipmentsDao,shipmentsMemorySource,
+        ShipmentEntityToShipmentMapper()
+    )
 
     @Provides
     internal fun provideShipmentsUseCase(homeRepository: HomeRepository) =
-        GetShipmentsUseCase(homeRepository, SchedulerProvider())
+        GetShipmentsUseCase(
+            homeRepository,
+            SchedulerProvider()
+        )
 
 }
