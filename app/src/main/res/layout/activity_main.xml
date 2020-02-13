@@ -18,56 +18,60 @@
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_shipments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="6"
         tools:listitem="@layout/shipment_item" />
 
-
     <FrameLayout
+        android:id="@+id/bottom_nearby"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:id="@+id/bottom_nearby"
+        android:layout_gravity="bottom"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/bottom_shape"
-        android:elevation="4dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        android:elevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
+            android:id="@+id/layout_bottom"
             android:animateLayoutChanges="true"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_nearby"
                 style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Show Nearby ?"
-                android:textColor="@color/colorPrimaryDark" />
+                android:text="@string/show_nearby"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottie_switch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1.5"
-                android:scaleType="centerCrop"
+                android:layout_margin="4dp"
+                android:scaleType="centerInside"
                 app:lottie_autoPlay="false"
-                app:lottie_fileName="switch_anim.json"
-                app:lottie_loop="false" />
+                android:visibility="gone"
+                app:lottie_fileName="location.json"
+                app:lottie_loop="true" />
 
 
         </LinearLayout>
     </FrameLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

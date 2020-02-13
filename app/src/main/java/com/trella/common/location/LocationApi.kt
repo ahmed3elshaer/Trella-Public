@@ -38,7 +38,7 @@ import java.util.ArrayList
 class LocationApi(
     activity: Activity,
     private val shouldWeRequestPermissions: Boolean = true,
-    private val shouldWeRequestOptimization: Boolean = false,
+    private val shouldWeRequestOptimization: Boolean = true,
     private val isRealtime: Boolean = false,
     private val callbacks: Callbacks
 ) {
@@ -126,7 +126,7 @@ class LocationApi(
                     break
                 }
             }
-            if (permissionGranted == false) {
+            if (!permissionGranted) {
                 // request permissions as not present
                 if (shouldWeRequestPermissions) {
                     val permissionsArgs = permissions.toTypedArray()
@@ -190,7 +190,7 @@ class LocationApi(
         val locationRequest = LocationRequest().apply {
             interval = 10000
             fastestInterval = 2000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
         }
 
         // check current location settings

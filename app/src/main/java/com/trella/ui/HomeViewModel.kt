@@ -17,8 +17,9 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getShipments(latitude: Double? = null, longitude: Double? = null) {
-        getShipmentsUseCase.getAllShipments(latitude,longitude)
+        getShipmentsUseCase.getAllShipments(latitude, longitude)
             .doOnSubscribe { showLoading() }
+            .map { HomePayload(it, latitude != null) }
             .doOnError(this::postError)
             .subscribe(this::postPayload)
             .addDisposable()
@@ -29,7 +30,7 @@ class HomeViewModel @Inject constructor(
         post(previousValue().copy(status = BaseViewState.Status.LOADING))
     }
 
-    private fun postPayload(payload: List<Shipment>) {
+    private fun postPayload(payload: HomePayload) {
         post(
             previousValue().copy(
                 payload = payload,
@@ -42,7 +43,6 @@ class HomeViewModel @Inject constructor(
     private fun postError(error: Throwable) {
         post(
             previousValue().copy(
-                payload = null,
                 status = BaseViewState.Status.FAILURE,
                 error = error
             )

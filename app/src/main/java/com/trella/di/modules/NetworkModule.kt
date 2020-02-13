@@ -22,6 +22,7 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
     @Singleton
     @Provides
     internal fun provideRetrofitInterface(client: OkHttpClient): Retrofit {
