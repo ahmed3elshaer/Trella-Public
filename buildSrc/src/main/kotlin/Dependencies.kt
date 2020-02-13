@@ -12,8 +12,8 @@ object Deps {
     const val kotlinAndroid = "kotlin-android"
     const val kotlinKapt = "kotlin-kapt"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
-    const val googlePlayServices= "com.google.gms.google-services"
-    const val googleServicesPlugin= "com.google.gms:google-services:4.3.3"
+    const val googlePlayServices = "com.google.gms.google-services"
+    const val googleServicesPlugin = "com.google.gms:google-services:4.3.3"
 
 }
 
@@ -25,6 +25,8 @@ object AndroidSdk {
 }
 
 private object Versions {
+    const val turf: String = "4.9.0"
+    const val location: String = "17.0.0"
     const val stepper: String = "1.0.7"
     const val firebaseCore: String = "16.0.5"
     const val RxFirebaseAuth: String = "16.1.0.0"
@@ -56,9 +58,11 @@ private object Versions {
     const val junit = "4.12"
     const val testRunner = "3.2.0-alpha04"
     const val cameraX = "1.0.0-alpha05"
-    const val koin ="2.0.1"
+    const val koin = "2.0.1"
     const val compression = "2.2.2"
     const val anko = "0.10.8"
+    const val multidex = "2.0.1"
+    const val lottie = "3.3.1"
 }
 
 object JetPack {
@@ -67,6 +71,7 @@ object JetPack {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val ktxCore = "androidx.core:core-ktx:${Versions.jetpack}"
+    const val multiDex = "androidx.multidex:multidex:${Versions.multidex}"
 
 }
 
@@ -91,6 +96,7 @@ object UI {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val cardview = "androidx.cardview:cardview:${Versions.material}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.material}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object Navigation {
@@ -141,9 +147,9 @@ object Moshi {
 }
 
 object Koin {
-     val androidScope: String = "org.koin:koin-android-scope:" + Versions.koin
-     val androidViewmodel: String = "org.koin:koin-android-viewmodel:" + Versions.koin
-     val android: String = "org.koin:koin-android:" + Versions.koin
+    val androidScope: String = "org.koin:koin-android-scope:" + Versions.koin
+    val androidViewmodel: String = "org.koin:koin-android-viewmodel:" + Versions.koin
+    val android: String = "org.koin:koin-android:" + Versions.koin
 }
 
 object UnitTests {
@@ -176,9 +182,15 @@ object Firebase {
     val storage = "com.google.firebase:firebase-storage:${Versions.firebaseStorage}"
     val auth = "com.google.firebase:firebase-auth:${Versions.firebaseAuth}"
     val RxAuth = "com.androidhuman.rxfirebase2:firebase-auth:${Versions.RxFirebaseAuth}"
-    val RxAuthKotlin = "com.androidhuman.rxfirebase2:firebase-auth-kotlin:${Versions.RxFirebaseAuth}"
+    val RxAuthKotlin =
+        "com.androidhuman.rxfirebase2:firebase-auth-kotlin:${Versions.RxFirebaseAuth}"
     val core = "com.google.firebase:firebase-core:${Versions.firebaseCore}"
     val RxCore = "com.androidhuman.rxfirebase2:firebase-core:${Versions.firebaseRxCore}"
+}
+
+object Location {
+    val play = "com.google.android.gms:play-services-location:${Versions.location}"
+    val turf = "com.mapbox.mapboxsdk:mapbox-sdk-turf:${Versions.turf}"
 }
 
 

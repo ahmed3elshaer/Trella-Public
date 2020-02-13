@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Trella Task</string>
+    <string name="show_nearby">Show Nearby ?</string>
+    <string name="showing_nearby">Showing Nearby </string>
 </resources>

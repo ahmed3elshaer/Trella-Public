@@ -6,7 +6,6 @@ apply plugin: Deps.kotlinKapt
 
 apply plugin: Deps.kotlinAndroidExtensions
 
-apply plugin: Deps.googlePlayServices
 
 android {
     compileSdkVersion 29
@@ -18,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -33,14 +33,20 @@ dependencies {
     implementation JetPack.appCompat
     implementation JetPack.ktxCore
     implementation JetPack.constraintLayout
+    implementation JetPack.multiDex
 
     implementation UI.material
+    implementation UI.lottie
 
     implementation Lifecycle.lifecycleKtx
     implementation Lifecycle.livedata
     implementation Lifecycle.viewmodel
     implementation Lifecycle.viewmodelKtx
     kapt Lifecycle.lifecycleCompiler
+
+    implementation Room.runtime
+    implementation Room.rxjava
+    kapt Room.compiler
 
     implementation RxJava.java
     implementation RxJava.android
@@ -60,6 +66,9 @@ dependencies {
     implementation Dagger.android_support
     kapt Dagger.compiler
     kapt Dagger.support_compiler
+
+    implementation Location.play
+    implementation Location.turf
 
     testImplementation UnitTests.jUnit
     testImplementation UnitTests.mockito
