@@ -8,11 +8,12 @@
 
 package com.trella.data.remote
 
-import com.trella.data.models.Shipments
+import com.trella.data.models.ShipmentRemote
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface HomeApi {
     @GET("/marketplace")
-    fun getShipments(): Observable<List<Shipments>>
+    fun getShipments(@Query("lat") latitude: Double? = null, @Query("lng") longitude: Double? = null): Observable<List<ShipmentRemote>>
 }
