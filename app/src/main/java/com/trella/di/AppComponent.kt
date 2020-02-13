@@ -6,10 +6,10 @@
  *
  */
 
-package com.trella.common.di
+package com.trella.di
 
 import com.trella.common.Application
-import com.trella.common.di.modules.*
+import com.trella.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule

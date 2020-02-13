@@ -2,6 +2,7 @@ package com.trella.common.base
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -15,7 +16,7 @@ import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
 abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
-    DaggerAppCompatActivity() {
+    DaggerAppCompatActivity(), ViewStates {
 
 
     @Inject
@@ -63,7 +64,7 @@ abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
     protected abstract fun setupViews()
 
 
-    fun renderError(message: String) {
+    override fun renderError(message: String) {
         showMessage(message)
     }
 
@@ -78,11 +79,18 @@ abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
 
     abstract fun renderPayload(payload: E)
 
-    fun renderLoading(isLoading: Boolean) {
+    override fun renderLoading(isLoading: Boolean) {
         if (isLoading)
             getLoadingView()?.show()
         else
             getLoadingView()?.hide()
     }
 
+
+}
+
+interface ViewStates {
+    fun renderLoading(isLoading: Boolean)
+
+    fun renderError(message: String)
 }

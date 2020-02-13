@@ -6,7 +6,7 @@
  *
  */
 
-package com.trella.common.di.modules
+package com.trella.di.modules
 
 import com.trella.common.AuthInterceptor
 import dagger.Module
@@ -44,9 +44,6 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .addInterceptor(AuthInterceptor())
-            .connectTimeout(40, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
             .build()
     }
 

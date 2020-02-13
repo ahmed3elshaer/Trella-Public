@@ -9,7 +9,7 @@
 package com.trella.common
 
 import androidx.multidex.MultiDexApplication
-import com.trella.common.di.DaggerAppComponent
+import com.trella.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

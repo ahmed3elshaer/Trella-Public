@@ -30,6 +30,7 @@ class HomeRepository @Inject constructor(
         longitude: Double? = null
     ): Observable<List<ShipmentEntity>> =
         homeApi.getShipments(latitude, longitude)
+            .onErrorResumeNext(Observable.empty())
             .doOnNext { shipments ->
                 shipmentsDao.clearAll()
                     .also { shipmentsDao.insertAll(*shipments.toTypedArray()) }

@@ -6,7 +6,7 @@
  *
  */
 
-package com.trella.common.di.modules
+package com.trella.di.modules
 
 import com.trella.ui.HomeActivity
 import dagger.Module

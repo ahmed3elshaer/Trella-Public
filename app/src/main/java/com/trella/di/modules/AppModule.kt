@@ -6,7 +6,7 @@
  *
  */
 
-package com.trella.common.di.modules
+package com.trella.di.modules
 
 import android.content.Context
 import com.trella.common.Application

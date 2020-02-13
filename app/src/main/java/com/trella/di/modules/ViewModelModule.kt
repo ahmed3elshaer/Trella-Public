@@ -6,7 +6,7 @@
  *
  */
 
-package com.trella.common.di.modules
+package com.trella.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

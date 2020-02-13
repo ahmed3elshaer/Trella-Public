@@ -6,7 +6,7 @@
  *
  */
 
-package com.trella.common.di.modules
+package com.trella.di.modules
 
 
 import android.content.Context
@@ -21,7 +21,6 @@ import com.trella.ui.HomeRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
 class HomeModule {
