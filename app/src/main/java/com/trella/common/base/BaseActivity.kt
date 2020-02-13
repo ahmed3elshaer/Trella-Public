@@ -54,11 +54,13 @@ abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
             }
         })
         triggerEvents()
+        setupViews()
     }
 
     protected abstract fun getLayoutResource(): Int
     protected abstract fun getLoadingView(): View?
     protected abstract fun triggerEvents()
+    protected abstract fun setupViews()
 
 
     fun renderError(message: String) {
@@ -74,7 +76,7 @@ abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
             .show()
     }
 
-    abstract fun renderPayload(viewState: E)
+    abstract fun renderPayload(payload: E)
 
     fun renderLoading(isLoading: Boolean) {
         if (isLoading)

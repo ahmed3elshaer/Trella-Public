@@ -62,6 +62,7 @@ private object Versions {
     const val compression = "2.2.2"
     const val anko = "0.10.8"
     const val multidex = "2.0.1"
+    const val lottie = "3.3.1"
 }
 
 object JetPack {
@@ -95,6 +96,7 @@ object UI {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val cardview = "androidx.cardview:cardview:${Versions.material}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.material}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object Navigation {

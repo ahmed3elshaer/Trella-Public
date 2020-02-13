@@ -36,6 +36,7 @@ dependencies {
     implementation JetPack.multiDex
 
     implementation UI.material
+    implementation UI.lottie
 
     implementation Lifecycle.lifecycleKtx
     implementation Lifecycle.livedata
