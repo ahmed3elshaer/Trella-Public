@@ -4,23 +4,17 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.trella.common.viewstate.BaseViewState
-import io.reactivex.CompletableTransformer
-import io.reactivex.ObservableTransformer
-import io.reactivex.SingleTransformer
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 
-abstract class BaseViewModel<T : BaseViewState<T>> : ViewModel() {
+abstract class BaseViewModel<T> : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
 
-    protected abstract val _viewState: MutableLiveData<T>
+    protected abstract val viewStateImpl: MutableLiveData<T>
 
-    val viewState: LiveData<T> get() = _viewState
+    val viewState: LiveData<T> get() = viewStateImpl
 
     @CallSuper
     override fun onCleared() {
@@ -34,10 +28,10 @@ abstract class BaseViewModel<T : BaseViewState<T>> : ViewModel() {
 
 
     fun post(state: T) {
-        _viewState.value = state
+        viewStateImpl.value = state
     }
 
-    fun previousValue() = _viewState.value!!
+    fun previousValue() = viewStateImpl.value!!
 
     fun Disposable.addDisposable() {
         compositeDisposable.add(this)
