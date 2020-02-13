@@ -6,18 +6,18 @@
  *
  */
 
-package com.trella.common.local
+package com.trella.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.trella.data.models.ShipmentLocal
+import com.trella.data.models.ShipmentEntity
 
 @TypeConverters(ShipmentTypeConverter::class)
 @Database(
-    entities = [ShipmentLocal::class],
+    entities = [ShipmentEntity::class],
     version = 1,
     exportSchema = false
 )
