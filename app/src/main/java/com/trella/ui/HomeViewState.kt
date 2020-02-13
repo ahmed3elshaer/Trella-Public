@@ -7,4 +7,4 @@ import com.trella.domain.model.Shipment
      override val status: Status = Status.IDLE,
      override val payload: List<Shipment>? = null,
      override val error: Throwable? = null
-) : BaseViewState   <List<Shipment>>(status, payload, error)
+) : BaseViewState<List<Shipment>>(status, payload, error)

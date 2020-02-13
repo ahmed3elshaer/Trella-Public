@@ -8,7 +8,7 @@
 
 package com.trella.common.di.modules
 
-import com.trella.ui.MainActivity
+import com.trella.ui.HomeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,7 +16,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class BuilderModule {
 
     @ContributesAndroidInjector(modules = [HomeModule::class])
-    internal abstract fun bindMainActivity(): MainActivity
+    internal abstract fun bindMainActivity(): HomeActivity
 
 
 }

@@ -26,22 +26,13 @@ import javax.inject.Singleton
 @Module
 class HomeModule {
 
-    @Singleton
-    @Provides
-    internal fun provideHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(
-        HomeApi::class.java
-    )
-
-    @Singleton
     @Provides
     internal fun provideShipmentsDao(context: Context): ShipmentsDao =
         ShipmentsDatabase.getInstance(context).shipmentsDao()
 
-    @Singleton
     @Provides
     internal fun provideShipmentsMemory(): ShipmentsMemorySource = ShipmentsMemorySource()
 
-    @Singleton
     @Provides
     internal fun provideHomeRepository(
         homeApi: HomeApi,
@@ -52,6 +43,12 @@ class HomeModule {
             homeApi, shipmentsDao, shipmentsMemorySource,
             ShipmentEntityToShipmentMapper()
         )
+
+
+    @Provides
+    internal fun provideHomeApi(retrofit: Retrofit): HomeApi {
+        return retrofit.create(HomeApi::class.java)
+    }
 
     @Provides
     internal fun provideShipmentsUseCase(homeRepository: HomeRepository) =

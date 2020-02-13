@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.trella.common.extensions.hide
 import com.trella.common.extensions.show
 import com.trella.common.viewstate.BaseViewState
 import com.trella.common.viewstate.consume
 import dagger.android.support.DaggerAppCompatActivity
+import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
-abstract class BaseActivity<S : BaseViewState<S>, T : BaseViewModel<S>> : DaggerAppCompatActivity() {
+abstract class BaseActivity<E, S : BaseViewState<E>, T : BaseViewModel<S>> :
+    DaggerAppCompatActivity() {
 
 
     @Inject
@@ -23,33 +26,39 @@ abstract class BaseActivity<S : BaseViewState<S>, T : BaseViewModel<S>> : Dagger
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(
+                (this.javaClass
+                    .genericSuperclass as ParameterizedType)
+                    .actualTypeArguments[2] as Class<T>
+            )
         setContentView(getLayoutResource())
         viewModel.viewState.observe(this, Observer { viewstate ->
             viewstate.consume {
-               doOnError {
-                   it.message?.let { message ->
-                       renderError(message)
-                   }.also { renderLoading(false) }
-               }
-               doOnLoading {
-                   renderLoading(true)
-               }
-               doOnSuccess {
-                   renderPayload(it.payload!!).also {
-                       renderLoading(
-                           false
-                       )
-                   }
-               }
+                doOnError {
+                    it.message?.let { message ->
+                        renderError(message)
+                    }.also { renderLoading(false) }
+                }
+                doOnLoading {
+                    renderLoading(true)
+                }
+                doOnSuccess {
+                    renderPayload(it!!).also {
+                        renderLoading(
+                            false
+                        )
+                    }
+                }
 
-           }
+            }
         })
-        useView()
+        triggerEvents()
     }
 
     protected abstract fun getLayoutResource(): Int
     protected abstract fun getLoadingView(): View?
-    protected abstract fun useView()
+    protected abstract fun triggerEvents()
 
 
     fun renderError(message: String) {
@@ -65,7 +74,7 @@ abstract class BaseActivity<S : BaseViewState<S>, T : BaseViewModel<S>> : Dagger
             .show()
     }
 
-    abstract fun renderPayload(viewState: S)
+    abstract fun renderPayload(viewState: E)
 
     fun renderLoading(isLoading: Boolean) {
         if (isLoading)

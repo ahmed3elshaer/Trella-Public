@@ -13,7 +13,7 @@ data class ShipmentEntity(
     val commodity: String = "",
     @ColumnInfo(name = "addresses")
     @Json(name = "addresses")
-    val address: List<Address> = listOf(),
+    val addresses: List<Address> = listOf(),
     @ColumnInfo(name = "price")
     @Json(name = "price")
     val price: Int = 0,

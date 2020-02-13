@@ -13,8 +13,8 @@ class ShipmentEntityToShipmentMapper : Mapper<ShipmentEntity, Shipment>() {
             it.numberOfBids,
             it.key,
             it.vehicleType,
-            addressMapper.map(it.address.find { it.order == 1 }!!),
-            addressMapper.map(it.address.find { it.order == 2 }!!)
+            addressMapper.map(it.addresses.find { it.order == 1 }!!),
+            addressMapper.map(it.addresses.find { it.order == 2 }!!)
         )
     }
 
