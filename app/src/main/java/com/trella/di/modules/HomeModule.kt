@@ -39,8 +39,8 @@ class HomeModule {
         shipmentsMemorySource: ShipmentsMemorySource
     ): HomeRepository =
         HomeRepository(
-            homeApi, shipmentsDao, shipmentsMemorySource,
-            ShipmentEntityToShipmentMapper()
+            homeApi, shipmentsDao, shipmentsMemorySource
+
         )
 
 
@@ -53,6 +53,7 @@ class HomeModule {
     internal fun provideShipmentsUseCase(homeRepository: HomeRepository) =
         GetShipmentsUseCase(
             homeRepository,
+            ShipmentEntityToShipmentMapper(),
             SchedulerProvider()
         )
 

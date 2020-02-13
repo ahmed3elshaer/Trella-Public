@@ -11,8 +11,7 @@ import javax.inject.Inject
 class HomeRepository @Inject constructor(
     private val homeApi: HomeApi,
     private val shipmentsDao: ShipmentsDao,
-    private val shipmentsMemorySource: ShipmentsMemorySource,
-    private val shipmentEntityToShipmentMapper: ShipmentEntityToShipmentMapper
+    private val shipmentsMemorySource: ShipmentsMemorySource
 ) {
 
     fun getShipments(latitude: Double? = null, longitude: Double? = null) =
@@ -22,10 +21,9 @@ class HomeRepository @Inject constructor(
             getShipmentsDisk()
         )
             .firstElement()
-            .map(shipmentEntityToShipmentMapper::map)
 
 
-    private fun getShipmentsRemote(
+    fun getShipmentsRemote(
         latitude: Double? = null,
         longitude: Double? = null
     ): Observable<List<ShipmentEntity>> =
@@ -38,12 +36,12 @@ class HomeRepository @Inject constructor(
 
             }
 
-    private fun getShipmentsDisk(): Observable<List<ShipmentEntity>> = shipmentsDao.allShipments()
+    fun getShipmentsDisk(): Observable<List<ShipmentEntity>> = shipmentsDao.allShipments()
         .doOnNext { shipments ->
             shipmentsMemorySource.cache(shipments)
         }
 
-    private fun getShipmentsMemory() = shipmentsMemorySource.getShipments()
+    fun getShipmentsMemory() = shipmentsMemorySource.getShipments()
 
 
 }

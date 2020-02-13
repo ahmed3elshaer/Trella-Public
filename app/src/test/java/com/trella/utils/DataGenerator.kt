@@ -7,11 +7,14 @@ object DataGenerator {
 
     fun getShipments() = listOf(getShipment(), getShipment(), getShipment())
 
-    fun getShipment() = Shipment()
+    private fun getShipment() = Shipment()
 
-    fun geEntitytShipments() = listOf(getShipment(), getShipment(), getShipment())
+    fun threeEntityShipments() = listOf(ShipmentEntity(), ShipmentEntity(), ShipmentEntity())
 
-    fun getShipmentEntity() = ShipmentEntity()
+    fun fourEntityShipments() =
+        listOf(ShipmentEntity(), ShipmentEntity(), ShipmentEntity(), ShipmentEntity())
+
+    fun twoEntityShipments() = listOf(ShipmentEntity(), ShipmentEntity())
 
     const val lat = 30.0456862
 
