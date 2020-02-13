@@ -8,6 +8,7 @@
 
 package com.trella.common.di.modules
 
+import com.trella.common.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -17,9 +18,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+    @Singleton
     @Provides
     internal fun provideRetrofitInterface(client: OkHttpClient): Retrofit {
 
@@ -33,12 +36,14 @@ class NetworkModule {
             .build()
     }
 
+    @Singleton
     @Provides
     internal fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(AuthInterceptor())
             .connectTimeout(40, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
