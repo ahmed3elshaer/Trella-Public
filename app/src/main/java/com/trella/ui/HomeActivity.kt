@@ -48,7 +48,7 @@ class HomeActivity : BaseActivity<HomePayload, HomeViewState, HomeViewModel>() {
         if (text_nearby.text == getString(R.string.show_nearby))
             getLocation()
         else
-            viewModel.getShipments()
+            viewModel.getShipments().also { rxLocation.stopLocationUpdates() }
     }
 
     private fun getLocation() {
