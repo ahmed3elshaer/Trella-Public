@@ -43,6 +43,10 @@ dependencies {
     implementation Lifecycle.viewmodelKtx
     kapt Lifecycle.lifecycleCompiler
 
+    implementation Room.runtime
+    implementation Room.rxjava
+    kapt Room.compiler
+
     implementation RxJava.java
     implementation RxJava.android
     implementation RxJava.relay
