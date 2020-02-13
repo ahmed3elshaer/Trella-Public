@@ -1,7 +1,6 @@
 package com.trella.ui
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.trella.common.base.BaseViewModel
 import com.trella.common.viewstate.BaseViewState
 import com.trella.domain.GetShipmentsUseCase
@@ -17,21 +16,14 @@ class HomeViewModel @Inject constructor(
         post(HomeViewState())
     }
 
-    fun getShipments() {
-        getShipmentsUseCase.getAllShipments()
+    fun getShipments(latitude: Double? = null, longitude: Double? = null) {
+        getShipmentsUseCase.getAllShipments(latitude,longitude)
             .doOnSubscribe { showLoading() }
             .doOnError(this::postError)
             .subscribe(this::postPayload)
             .addDisposable()
     }
 
-    fun getShipmentsNearBy(latitude: Double, longitude: Double) {
-        getShipmentsUseCase.getNearByShipments(latitude, longitude)
-            .doOnSubscribe { showLoading() }
-            .doOnError(this::postError)
-            .subscribe(this::postPayload)
-            .addDisposable()
-    }
 
     private fun showLoading() {
         post(previousValue().copy(status = BaseViewState.Status.LOADING))
