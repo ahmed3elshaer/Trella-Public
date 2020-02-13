@@ -10,10 +10,11 @@ package com.trella.common.di.modules
 
 
 import android.content.Context
-import com.trella.common.local.ShipmentsDao
-import com.trella.common.local.ShipmentsDatabase
+import com.trella.data.local.ShipmentsDao
+import com.trella.data.local.ShipmentsDatabase
 import com.trella.common.schedulers.SchedulerProvider
-import com.trella.data.remote.HomeApi
+import com.trella.data.HomeApi
+import com.trella.data.ShipmentsMemorySource
 import com.trella.ui.home.GetShipmentsUseCase
 import com.trella.ui.home.HomeRepository
 import dagger.Module
@@ -26,15 +27,26 @@ class HomeModule {
 
     @Singleton
     @Provides
-    internal fun provideHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(HomeApi::class.java)
+    internal fun provideHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(
+        HomeApi::class.java
+    )
 
     @Singleton
     @Provides
-    internal fun provideShipmentsDao(context: Context): ShipmentsDao = ShipmentsDatabase.getInstance(context).shipmentsDao()
+    internal fun provideShipmentsDao(context: Context): ShipmentsDao =
+        ShipmentsDatabase.getInstance(context).shipmentsDao()
 
     @Singleton
     @Provides
-    internal fun provideHomeRepository(homeApi: HomeApi,shipmentsDao: ShipmentsDao): HomeRepository = HomeRepository(homeApi,shipmentsDao)
+    internal fun provideShipmentsMemory(): ShipmentsMemorySource = ShipmentsMemorySource()
+
+    @Singleton
+    @Provides
+    internal fun provideHomeRepository(
+        homeApi: HomeApi,
+        shipmentsDao: ShipmentsDao,
+        shipmentsMemorySource: ShipmentsMemorySource
+    ): HomeRepository = HomeRepository(homeApi, shipmentsDao,shipmentsMemorySource)
 
     @Provides
     internal fun provideShipmentsUseCase(homeRepository: HomeRepository) =
