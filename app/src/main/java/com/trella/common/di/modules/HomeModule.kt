@@ -17,7 +17,7 @@ import com.trella.data.HomeApi
 import com.trella.data.ShipmentEntityToShipmentMapper
 import com.trella.data.ShipmentsMemorySource
 import com.trella.domain.GetShipmentsUseCase
-import com.trella.ui.home.HomeRepository
+import com.trella.ui.HomeRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -47,9 +47,11 @@ class HomeModule {
         homeApi: HomeApi,
         shipmentsDao: ShipmentsDao,
         shipmentsMemorySource: ShipmentsMemorySource
-    ): HomeRepository = HomeRepository(homeApi, shipmentsDao,shipmentsMemorySource,
-        ShipmentEntityToShipmentMapper()
-    )
+    ): HomeRepository =
+        HomeRepository(
+            homeApi, shipmentsDao, shipmentsMemorySource,
+            ShipmentEntityToShipmentMapper()
+        )
 
     @Provides
     internal fun provideShipmentsUseCase(homeRepository: HomeRepository) =

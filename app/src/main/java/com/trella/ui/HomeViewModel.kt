@@ -1,4 +1,4 @@
-package com.trella.ui.home
+package com.trella.ui
 
 import androidx.lifecycle.ViewModel
 

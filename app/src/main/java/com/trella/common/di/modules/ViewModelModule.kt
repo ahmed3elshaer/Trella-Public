@@ -10,7 +10,7 @@ package com.trella.common.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.trella.ui.home.HomeViewModel
+import com.trella.ui.HomeViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

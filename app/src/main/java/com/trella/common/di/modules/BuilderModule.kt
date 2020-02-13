@@ -8,7 +8,7 @@
 
 package com.trella.common.di.modules
 
-import com.trella.ui.home.MainActivity
+import com.trella.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

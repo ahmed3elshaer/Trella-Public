@@ -1,4 +1,4 @@
-package com.trella.ui.home
+package com.trella.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -2,7 +2,7 @@ package com.trella.domain
 
 import com.trella.common.base.BaseUseCase
 import com.trella.common.schedulers.BaseSchedulerProvider
-import com.trella.ui.home.HomeRepository
+import com.trella.ui.HomeRepository
 import javax.inject.Inject
 
 class GetShipmentsUseCase @Inject constructor(

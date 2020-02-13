@@ -1,4 +1,4 @@
-package com.trella.ui.home
+package com.trella.ui
 
 import com.trella.data.local.ShipmentsDao
 import com.trella.data.HomeApi
